@@ -90,7 +90,7 @@ public class ShapeCollectorTestSuite {
 
             Shape result = shapeCollector.getFigure(2);
 
-            Assertions.assertEquals(triangle2, result);
+            Assertions.assertEquals(triangle3, result);
         }
 
         @Test
@@ -105,7 +105,7 @@ public class ShapeCollectorTestSuite {
             shapeCollector.addFigure(triangle2);
             shapeCollector.addFigure(triangle3);
 
-            Shape result = shapeCollector.getFigure(4);
+            Shape result = shapeCollector.getFigure(99);
 
             Assertions.assertNull(result);
         }
@@ -128,7 +128,8 @@ public class ShapeCollectorTestSuite {
 
             String result = shapeCollector.showFigures();
 
-            Assertions.assertNull(result);
+            Assertions.assertNotNull(result);
+            Assertions.assertEquals("triangle triangle triangle", result);
         }
 
         @Test

@@ -33,8 +33,15 @@ public class WeatherForecast {
     }
 
     public double calculateMedian() {
-//        Collection<Double> values = temperatures.getTemperatures().values();
-
-        return 20.0;
+        Collection<Double> values = temperatures.getTemperatures().values();
+        double[] array = values.stream().mapToDouble(Double::doubleValue).toArray();
+        Arrays.sort(array);
+        double median;
+        if (array.length % 2 == 0) {
+            median = (array[array.length / 2] + array[array.length / 2 - 1]) / 2;
+        } else {
+            median = array[(array.length - 1) / 2];
+        }
+        return median;
     }
 }

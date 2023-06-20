@@ -21,7 +21,7 @@ public class BookDirectoryTestSuite {
     private LibraryDatabase libraryDatabaseMock;
 
     @Nested
-    class testListBooksWithCondition {
+    class TestListBooksWithCondition {
         @Test
         void testListBooksWithConditionsReturnList() {
 
@@ -89,43 +89,46 @@ public class BookDirectoryTestSuite {
         }
     }
 
-    @Test
-    void testListBooksInHandsOfWithNoBooks() {
-        BookLibrary bookLibrary = new BookLibrary(libraryDatabaseMock);
-        List<Book> resultListOf0Books = new ArrayList<>();
-        LibraryUser libraryUser1 = new LibraryUser("firstname1", "lastname1", "12345678901");
-        when(libraryDatabaseMock.listBooksInHandsOf(libraryUser1)).thenReturn(resultListOf0Books);
+    @Nested
+    class TestListBooksInHandsOf {
+        @Test
+        void testListBooksInHandsOfWithNoBooks() {
+            BookLibrary bookLibrary = new BookLibrary(libraryDatabaseMock);
+            List<Book> resultListOf0Books = new ArrayList<>();
+            LibraryUser libraryUser1 = new LibraryUser("firstname1", "lastname1", "12345678901");
+            when(libraryDatabaseMock.listBooksInHandsOf(libraryUser1)).thenReturn(resultListOf0Books);
 
-        List<Book> list = bookLibrary.listBooksInHandsOf(libraryUser1);
+            List<Book> list = bookLibrary.listBooksInHandsOf(libraryUser1);
 
-        assertEquals(0, list.size());
-        verify(libraryDatabaseMock, times(1)).listBooksInHandsOf(any());
-    }
+            assertEquals(0, list.size());
+            verify(libraryDatabaseMock, times(1)).listBooksInHandsOf(any());
+        }
 
-    @Test
-    void testListBooksInHandsOfWithOneBook() {
-        BookLibrary bookLibrary = new BookLibrary(libraryDatabaseMock);
-        List<Book> resultListOf1Book = generateListOfNBooks(1);
-        LibraryUser libraryUser2 = new LibraryUser("firstname2", "lastname2", "12345678902");
-        when(libraryDatabaseMock.listBooksInHandsOf(libraryUser2)).thenReturn(resultListOf1Book);
+        @Test
+        void testListBooksInHandsOfWithOneBook() {
+            BookLibrary bookLibrary = new BookLibrary(libraryDatabaseMock);
+            List<Book> resultListOf1Book = generateListOfNBooks(1);
+            LibraryUser libraryUser2 = new LibraryUser("firstname2", "lastname2", "12345678902");
+            when(libraryDatabaseMock.listBooksInHandsOf(libraryUser2)).thenReturn(resultListOf1Book);
 
-        List<Book> list = bookLibrary.listBooksInHandsOf(libraryUser2);
+            List<Book> list = bookLibrary.listBooksInHandsOf(libraryUser2);
 
-        assertEquals(1, list.size());
-        verify(libraryDatabaseMock, times(1)).listBooksInHandsOf(any());
-    }
+            assertEquals(1, list.size());
+            verify(libraryDatabaseMock, times(1)).listBooksInHandsOf(any());
+        }
 
-    @Test
-    void testListBooksInHandsOfWith5Books() {
-        BookLibrary bookLibrary = new BookLibrary(libraryDatabaseMock);
-        List<Book> resultListOf5Books = generateListOfNBooks(5);
-        LibraryUser libraryUser3 = new LibraryUser("firstname3", "lastname3", "12345678903");
-        when(libraryDatabaseMock.listBooksInHandsOf(libraryUser3)).thenReturn(resultListOf5Books);
+        @Test
+        void testListBooksInHandsOfWith5Books() {
+            BookLibrary bookLibrary = new BookLibrary(libraryDatabaseMock);
+            List<Book> resultListOf5Books = generateListOfNBooks(5);
+            LibraryUser libraryUser3 = new LibraryUser("firstname3", "lastname3", "12345678903");
+            when(libraryDatabaseMock.listBooksInHandsOf(libraryUser3)).thenReturn(resultListOf5Books);
 
-        List<Book> list = bookLibrary.listBooksInHandsOf(libraryUser3);
+            List<Book> list = bookLibrary.listBooksInHandsOf(libraryUser3);
 
-        assertEquals(5, list.size());
-        verify(libraryDatabaseMock, times(1)).listBooksInHandsOf(any());
+            assertEquals(5, list.size());
+            verify(libraryDatabaseMock, times(1)).listBooksInHandsOf(any());
+        }
     }
 
     private List<Book> generateListOfNBooks(int booksQuantity) {

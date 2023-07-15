@@ -33,6 +33,5 @@ public class LibraryTestSuite {
 
         Assertions.assertEquals(3, library.getBooks().size());
         Assertions.assertEquals(4, library2.getBooks().size());
-
     }
 }

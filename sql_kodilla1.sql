@@ -67,3 +67,31 @@ JOIN ISSUES I ON I.USER_ID_ASSIGNED_TO = U.ID
 GROUP BY U.ID;
 
 SELECT * FROM issues;
+
+UPDATE POSTS
+SET USER_ID = 3
+WHERE ID = 4;
+
+COMMIT;
+
+DELETE FROM POSTS
+WHERE ID = 4;
+
+COMMIT;
+
+SELECT * FROM posts;
+
+INSERT INTO POSTS (USER_ID, BODY)
+VALUES  (1, 'example body1'),
+		(2, 'example body2'),
+        (3, 'example body3');
+
+UPDATE POSTS
+SET BODY = 'to delete...'
+WHERE ID >= 7;
+
+-- DELETE FROM POSTS
+-- WHERE BODY = 'to delete...';
+
+DELETE FROM POSTS
+WHERE ID >= 7;
